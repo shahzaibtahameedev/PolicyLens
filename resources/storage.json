@@ -1,0 +1,78 @@
+{
+    "sku": {
+        "name": "Standard_RAGRS",
+        "tier": "Standard"
+    },
+    "kind": "StorageV2",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mag-www/providers/Microsoft.Storage/storageAccounts/selfserveassets",
+    "name": "selfserveassets",
+    "type": "Microsoft.Storage/storageAccounts",
+    "location": "uksouth",
+    "tags": {},
+    "properties": {
+        "dnsEndpointType": "Standard",
+        "defaultToOAuthAuthentication": false,
+        "publicNetworkAccess": "Enabled",
+        "keyCreationTime": {
+            "key1": "2024-02-28T12:04:27.3840805Z",
+            "key2": "2024-02-28T12:04:27.3840805Z"
+        },
+        "allowCrossTenantReplication": true,
+        "privateEndpointConnections": [],
+        "minimumTlsVersion": "TLS1_2",
+        "allowBlobPublicAccess": true,
+        "allowSharedKeyAccess": true,
+        "networkAcls": {
+            "ipv6Rules": [],
+            "resourceAccessRules": [
+                {
+                    "tenantId": "11111111-1111-1111-1111-111111111111",
+                    "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/datascanners/StorageDataScanner"
+                }
+            ],
+            "bypass": "AzureServices",
+            "virtualNetworkRules": [],
+            "ipRules": [],
+            "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+            "requireInfrastructureEncryption": false,
+            "services": {
+                "file": {
+                    "keyType": "Account",
+                    "enabled": true,
+                    "lastEnabledTime": "2024-02-28T12:04:27.7121849Z"
+                },
+                "blob": {
+                    "keyType": "Account",
+                    "enabled": true,
+                    "lastEnabledTime": "2024-02-28T12:04:27.7121849Z"
+                }
+            },
+            "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot",
+        "provisioningState": "Succeeded",
+        "creationTime": "2024-02-28T12:04:27.3059275Z",
+        "primaryEndpoints": {
+            "dfs": "https://selfserveassets.dfs.core.windows.net/",
+            "web": "https://selfserveassets.z33.web.core.windows.net/",
+            "blob": "https://selfserveassets.blob.core.windows.net/",
+            "queue": "https://selfserveassets.queue.core.windows.net/",
+            "table": "https://selfserveassets.table.core.windows.net/",
+            "file": "https://selfserveassets.file.core.windows.net/"
+        },
+        "primaryLocation": "uksouth",
+        "statusOfPrimary": "available",
+        "secondaryLocation": "ukwest",
+        "statusOfSecondary": "available",
+        "secondaryEndpoints": {
+            "dfs": "https://selfserveassets-secondary.dfs.core.windows.net/",
+            "web": "https://selfserveassets-secondary.z33.web.core.windows.net/",
+            "blob": "https://selfserveassets-secondary.blob.core.windows.net/",
+            "queue": "https://selfserveassets-secondary.queue.core.windows.net/",
+            "table": "https://selfserveassets-secondary.table.core.windows.net/"
+        }
+    }
+}

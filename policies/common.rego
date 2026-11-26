@@ -1,4 +1,4 @@
-# Policy 01: tagging rules. Applies to every resource type.
+# Common policies. These apply to every resource type, whatever the kind.
 package azure.audit
 
 # The tags every resource must carry.
