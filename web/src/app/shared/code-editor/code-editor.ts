@@ -8,6 +8,7 @@ import {
     inject,
     input,
     model,
+    output,
     signal,
     viewChild,
 } from "@angular/core";
@@ -22,24 +23,29 @@ import {
     EDITOR_THEME_ID,
     REGO_LANGUAGE_ID,
 } from "../../core/constants";
-import { loadMonaco } from "../../core/monaco-loader";
 import type { EditorMarker } from "../../core/models";
+import { loadMonaco } from "../../core/monaco-loader";
+
+export interface CursorPosition {
+    line: number;
+    column: number;
+}
 
 @Component({
     selector: "pl-code-editor",
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-        <div class="relative h-full w-full">
+        <div class="relative h-full w-full bg-dark-canvas">
             <div #host class="h-full w-full"></div>
 
             @if (isLoading()) {
-                <div class="absolute inset-0 grid place-items-center bg-canvas/70 text-sm text-ink-faint">
+                <div class="absolute inset-0 grid place-items-center bg-dark-canvas text-sm text-dark-muted">
                     Loading editor...
                 </div>
             }
 
             @if (loadErrorMessage()) {
-                <div class="absolute inset-0 grid place-items-center bg-canvas/90 px-6 text-center text-sm text-high">
+                <div class="absolute inset-0 grid place-items-center bg-dark-canvas px-6 text-center text-sm text-[#f14c4c]">
                     {{ loadErrorMessage() }}
                 </div>
             }
@@ -51,6 +57,7 @@ export class CodeEditor {
     readonly language = input<string>(REGO_LANGUAGE_ID);
     readonly readOnly = input<boolean>(false);
     readonly markers = input<EditorMarker[]>([]);
+    readonly cursorChanged = output<CursorPosition>();
 
     readonly isLoading = signal(true);
     readonly loadErrorMessage = signal<string>("");
@@ -133,6 +140,13 @@ export class CodeEditor {
                 this.value.set(editorText);
             });
 
+            editor.onDidChangeCursorPosition((event) => {
+                this.cursorChanged.emit({
+                    line: event.position.lineNumber,
+                    column: event.position.column,
+                });
+            });
+
             this.monaco = monaco;
             this.editor = editor;
             this.isLoading.set(false);
@@ -145,8 +159,6 @@ export class CodeEditor {
         }
     }
 
-    // The editor is the source of truth while the user types, so a value coming back in
-    // is only written when it genuinely differs - otherwise the cursor would jump.
     private pushValueToEditor(text: string): void {
         const editor = this.editor;
 

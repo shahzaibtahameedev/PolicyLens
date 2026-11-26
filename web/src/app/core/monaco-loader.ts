@@ -98,24 +98,24 @@ function defineEditorTheme(monaco: MonacoNamespace): void {
         base: "vs-dark",
         inherit: true,
         rules: [
-            { token: "comment", foreground: "5d6b80", fontStyle: "italic" },
-            { token: "keyword", foreground: "a5b4fc" },
-            { token: "string", foreground: "7dd3fc" },
-            { token: "number", foreground: "fbbf24" },
-            { token: "constant", foreground: "f472b6" },
-            { token: "type.identifier", foreground: "34d399" },
-            { token: "operator", foreground: "93a4bb" },
+            { token: "comment", foreground: "6a9955" },
+            { token: "keyword", foreground: "569cd6" },
+            { token: "string", foreground: "ce9178" },
+            { token: "number", foreground: "b5cea8" },
+            { token: "constant", foreground: "569cd6" },
+            { token: "type.identifier", foreground: "dcdcaa" },
+            { token: "operator", foreground: "d6d6d6" },
         ],
         colors: {
-            "editor.background": "#0f141b",
-            "editor.foreground": "#e6edf6",
-            "editorLineNumber.foreground": "#334155",
-            "editorLineNumber.activeForeground": "#93a4bb",
-            "editor.lineHighlightBackground": "#161d27",
-            "editorGutter.background": "#0f141b",
-            "editorIndentGuide.background1": "#1e2733",
-            "editorWidget.background": "#18202b",
-            "editorWidget.border": "#2b3747",
+            "editor.background": "#1f1f1f",
+            "editor.foreground": "#d6d6d6",
+            "editorLineNumber.foreground": "#858585",
+            "editorLineNumber.activeForeground": "#ffffff",
+            "editor.lineHighlightBackground": "#292929",
+            "editorGutter.background": "#1f1f1f",
+            "editorIndentGuide.background1": "#333333",
+            "editorWidget.background": "#252526",
+            "editorWidget.border": "#525252",
         },
     });
 }
@@ -140,8 +140,6 @@ export function loadMonaco(): Promise<MonacoNamespace> {
                 return;
             }
 
-            // Monaco 0.58's bundle installs its own MonacoEnvironment.getWorker, which
-            // resolves its hashed worker files relative to this path. Do not override it.
             amdLoader.config({ paths: { vs: MONACO_VS_PATH } });
             amdLoader([MONACO_EDITOR_MODULE], () => {
                 const monaco = monacoWindow.monaco;
